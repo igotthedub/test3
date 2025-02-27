@@ -1,0 +1,133 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portalyze - Solana Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://s3.tradingview.com/tv.js"></script>
+    <script charset="UTF-8" src="./index.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Orbitron', sans-serif; }
+        body {
+            display: flex;
+            height: 100vh;
+            background: radial-gradient(circle, #01010a, #000);
+            color: #9b5de5;
+            overflow: hidden;
+        }
+        .space-bg {
+            position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("https://i.gifer.com/J4o.gif") no-repeat center center/cover;
+    z-index: -1;
+    filter: brightness(0.5);
+}
+        
+        @keyframes moveSpace {
+            0% { background-position: 0 0; }
+            100% { background-position: -500px 500px; }
+        }
+        .sidebar {
+    width: 260px;
+    background: rgba(5, 5, 20, 0.7); /* More transparency */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-right: 2px solid #9b5de5;
+    box-shadow: 5px 0 15px rgba(155, 93, 229, 0.5);
+    backdrop-filter: blur(10px); /* Adds a frosted glass effect */
+        }
+        .sidebar h2 {
+            text-align: center;
+            color: #9b5de5;
+            text-transform: uppercase;
+        }
+        .nav-link {
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+        .nav-link:hover {
+            background: #9b5de5;
+            color: black;
+        }
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        .market-overview {
+            background: transparent; /* Removes the background */
+            box-shadow: none; /* Removes any shadow effect */
+            border: none; /* Removes any border */
+        }
+        .chart-container {
+            width: 100%;
+            height: 500px;
+            margin-top: 20px;
+        }
+        .connect-wallet {
+            margin-top: 20px;
+            padding: 12px 20px;
+            font-size: 1.2rem;
+            background: linear-gradient(90deg, #9b5de5, #f15bb5);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .connect-wallet:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="space-bg"></div>
+    <div class="sidebar">
+        <img src="./updated_logo-removebg-preview.png" alt="Portalyze Logo" style="width: 100px; display: block; margin: 0 auto 15px;">
+        <h2>PORTALYZE</h2>
+        <div class="connect-wallet">Solana Markets</div>
+        <div class="connect-wallet">All Solana Pairs</div>
+        <div class="connect-wallet">Trending Solana Tokens</div>
+        <div class="connect-wallet">      Futures</div>
+        <button class="connect-wallet" onclick="connectWallet();">Wallet</button>
+    </div>
+    <div class="main-content">
+        <h1>Live Solana Market Overview</h1>
+        <div class="market-overview">
+            
+            <div class="chart-container" id="tradingview-chart"></div>
+        </div>
+    </div>
+    <script>
+        function connectWallet() {
+            // Wallet connection logic goes here
+        }
+        
+        new TradingView.widget({
+            "width": "100%",
+            "height": "100%",
+            "symbol": "BINANCE:SOLUSDT",
+            "interval": "30",
+            "timezone": "Etc/UTC",
+            "theme": "dark",
+            "style": "1",
+            "locale": "en",
+            "toolbar_bg": "#f1f3f6",
+            "enable_publishing": false,
+            "allow_symbol_change": true,
+            "container_id": "tradingview-chart"
+        });
+    </script>
+</body>
+</html>
